@@ -47,11 +47,14 @@ func main() {
 
 	var digit, decimal, hundred int
 	fmt.Scan(&digit)
-	hundred, digit = parse(100, digit)
-	decimal, digit = parse(10, digit)
-	fmt.Print(numbers[hundred], numbers[decimal], numbers[digit])
+	if _, ok := numbers[digit]; ok {
+		fmt.Println(numbers[digit])
+	} else {
+		hundred, digit = parse(100, digit)
+		decimal, digit = parse(10, digit)
+		fmt.Print(numbers[hundred], numbers[decimal], numbers[digit])
+	}
 }
-
 func parse(check int, number int) (int, int) {
 	var res int
 	if number >= check {
