@@ -51,8 +51,12 @@ func main() {
 		fmt.Println(numbers[digit])
 	} else {
 		hundred, digit = parse(100, digit)
-		decimal, digit = parse(10, digit)
-		fmt.Print(numbers[hundred], numbers[decimal], numbers[digit])
+		if _, ok := numbers[digit]; ok {
+			fmt.Print(numbers[hundred], numbers[digit])
+		} else {
+			decimal, digit = parse(10, digit)
+			fmt.Print(numbers[hundred], numbers[decimal], numbers[digit])
+		}
 	}
 }
 func parse(check int, number int) (int, int) {
